@@ -1,8 +1,8 @@
 var fs = require("fs");
 var path = require("path");
 var xlsx = require("xlsx");
-function buildCSV(data, deleteAfter) {
-    var fpath = path.join(process.cwd(), 'publicStore', Math.random() * 10000 + ".csv");
+function buildCSV(data,fpath, deleteAfter) {
+    
     var writeStream = fs.createWriteStream(fpath);
     var arr = [];
     for (var item in data[0]) {
@@ -25,10 +25,8 @@ function buildCSV(data, deleteAfter) {
             console.log('file deleted');
         });
     }, deleteAfter || 60 * 1000);
-    return fpath
 }
-function buildXlsx(data, deleteAfter) {
-    var fpath = path.join(process.cwd(),'publicStore', Math.random() * 10000 + ".xlsx");
+function buildXlsx(data, fpath, deleteAfter) {
     var workSheet = xlsx.utils.json_to_sheet(data);
     var workBook = xlsx.utils.book_new();
     xlsx.utils.book_append_sheet(workBook, workSheet);
@@ -42,9 +40,12 @@ function buildXlsx(data, deleteAfter) {
             console.log('file deleted');
         });
     }, deleteAfter || 60 * 1000);
-    return fpath
 }
-// buildCSV(x,  5*1000);
+// let mydata = [
+//     {name:'masud', roll: 11},
+//     {name:'rana', roll: 1},
+//   ]
+// buildCSV(mydata,  5*1000);
 // buildXlsx(x,  5*1000);
 var exporter = {
     buildCSV: buildCSV,
