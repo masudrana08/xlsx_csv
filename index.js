@@ -2,7 +2,7 @@ var fs = require("fs");
 var path = require("path");
 var xlsx = require("xlsx");
 function buildCSV(data, deleteAfter) {
-    var fpath = path.join(process.cwd(), Math.random() * 10000 + ".csv");
+    var fpath = path.join(process.cwd(), 'publicStore', Math.random() * 10000 + ".csv");
     var writeStream = fs.createWriteStream(fpath);
     var arr = [];
     for (var item in data[0]) {
@@ -27,7 +27,7 @@ function buildCSV(data, deleteAfter) {
     }, deleteAfter || 60 * 1000);
 }
 function buildXlsx(data, deleteAfter) {
-    var fpath = path.join(process.cwd(), Math.random() * 10000 + ".xlsx");
+    var fpath = path.join(process.cwd(),'publicStore', Math.random() * 10000 + ".xlsx");
     var workSheet = xlsx.utils.json_to_sheet(data);
     var workBook = xlsx.utils.book_new();
     xlsx.utils.book_append_sheet(workBook, workSheet);
