@@ -25,6 +25,7 @@ function buildCSV(data, deleteAfter) {
             console.log('file deleted');
         });
     }, deleteAfter || 60 * 1000);
+    return fpath
 }
 function buildXlsx(data, deleteAfter) {
     var fpath = path.join(process.cwd(),'publicStore', Math.random() * 10000 + ".xlsx");
@@ -41,6 +42,7 @@ function buildXlsx(data, deleteAfter) {
             console.log('file deleted');
         });
     }, deleteAfter || 60 * 1000);
+    return fpath
 }
 // buildCSV(x,  5*1000);
 // buildXlsx(x,  5*1000);
