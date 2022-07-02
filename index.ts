@@ -3,18 +3,18 @@ const path = require("path");
 const xlsx = require("xlsx");
   
 
-function buildCSV(data, deleteAfter) {
+function buildCSV(data:any, deleteAfter:number) {
   const fpath = path.join(process.cwd(), Math.random() * 10000 + ".csv");
   const writeStream = fs.createWriteStream(fpath);
-  let arr = [];
-  for (item in data[0]) {
+  let arr:string[] = [];
+  for (let item in data[0]) {
     arr.push(item);
   }
   writeStream.write(arr.join(","));
   writeStream.write("\n");
   data.forEach((d) => {
-    let arr2 = [];
-    for (item in d) {
+    let arr2:string[] = [];
+    for (let item in d) {
       arr2.push(d[item]);
     }
     writeStream.write(arr2.join(","));
